@@ -1,5 +1,6 @@
 import random
 import pandas as pd
+from .create_golden_path_DFS import find_path
 
 def generate_start_point(size_map):
     """
@@ -73,6 +74,8 @@ def gen_random_map(size_map, difficulty):
     # print(obstacles)
 
     matrix_map = fill_map_function(size_map, matrix_map, start_point_tuple, finish_point_tuple, obstacles,difficulty)
+
+    matrix_map = find_path(matrix_map,start_point_tuple,finish_point_tuple)
 
     for row in matrix_map:
         print(row)
