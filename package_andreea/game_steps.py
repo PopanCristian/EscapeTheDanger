@@ -18,9 +18,6 @@ def get_random_messages(road_choice):
     else:
         return "Unknown road, please try another option"
 
-road_choice = input()
-print(get_random_messages(road_choice))
-
 
 def update_car_health(health, obstacle_dict):
     """
@@ -40,12 +37,6 @@ def update_car_health(health, obstacle_dict):
             updated_health = 100
 
     return updated_health
-
-health = 90
-obstacle_dict = {'obstacol': -10}
-
-new_health = update_car_health(health, obstacle_dict)
-print(new_health)
 
 
 user_path_queue = queue.Queue() #Create an empty queue to record the user's steps
