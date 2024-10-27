@@ -77,8 +77,6 @@ def gen_random_map(size_map, difficulty):
 
     matrix_map = find_path(matrix_map,start_point_tuple,finish_point_tuple)
 
-    for row in matrix_map:
-        print(row)
-
+    return matrix_map
     # print(get_diff_from_csv("obstacles.csv",difficulty))
 
