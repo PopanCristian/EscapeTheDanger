@@ -68,6 +68,9 @@ def gen_random_map(size_map, difficulty):
     start_point_tuple = generate_start_point(size_map)  # starting point
     finish_point_tuple = (random.randint(0, size_map-1), random.randint(0, size_map-1))  # The finish point(home) will
     # be a random point from the map
+    if start_point_tuple == finish_point_tuple:  # it's possible to generate same coords for start and finish, than I
+        # will return a special code to interpret
+        return 666
 
     obstacles = get_obstacles_from_csv("obstacles.csv")  # list with dictionaries
     # that contains names of obstacles with dmg

@@ -27,18 +27,18 @@ def task2_update_position(matrix, position, key):
 
     :param matrix: the lenght of the matrix
     :param position: any position from matrix
-    :param key:tuple
+    :param key:string
     :return: the positions
     """
-    i = j = position #define the positions
+    i , j = position #define the positions
     rows = cols = len(matrix)
-    if key ==  "up" and i - 1 >= 0:  # to the nord
+    if key ==  "up" and int(i) - 1 >= 0:  # to the nord
         i -= 1
     elif key == "down" and i + 1 < rows:  # to the south
         i += 1
     elif key == "left" and j - 1 >= 0:  # to the west
         j -= 1
-    elif key == "right" and j + 1 > cols:  # to the east
+    elif key == "right" and j + 1 <= cols:  # to the east
         j += 1
     return (i, j)
 

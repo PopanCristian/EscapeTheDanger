@@ -52,6 +52,5 @@ def display_user_path_from_queue():
     """
     This function will display the user path from the queue
     """
-    print("Path taken by the user: ")
     while not user_path_queue.empty():
         print(user_path_queue.get()) #Display each step the user has taken
