@@ -28,6 +28,8 @@ def update_car_health(health, obstacle_dict):
     """
     updated_health = health #Initialize updated_health with the current health
     #Iterate over the key-value pairs in the obstacle dictionary
+    if obstacle_dict == 'S':
+        return updated_health
     for key, value in obstacle_dict.items():
         obstacle_value = value #Get the value of the obstacle
 
@@ -52,6 +54,8 @@ def display_user_path_from_queue():
     """
     This function will display the user path from the queue
     """
-    print("Path taken by the user: ")
     while not user_path_queue.empty():
-        print(user_path_queue.get()) #Display each step the user has taken
+        print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+user_path_queue.get()) #Display each step the user has taken
+
+        if user_path_queue.empty():  # when our queue is empty we will get None
+            return ""   # so we cheat a little bit :d
