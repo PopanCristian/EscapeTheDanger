@@ -5,11 +5,11 @@ from package_andreea.game_steps import *
 from package_marina.start_the_game import *
 if __name__ == '__main__':
     print("Hello there !")
-    # sleep(1)
+    sleep(1)
     print("You have been to mechanic and your car have only 90 % health\n"
           "Drive safe to your home. You can follow a clean way to your house or you can choose to follow a adventure "
           "way until there. ")
-    # sleep(6)
+    sleep(6)
     print("Depending on the obstacles you overcome, your car’s health will decrease. When your car is below "
           "10% health, you are no longer able to drive the car.\nYou can only use" + Fore.RED+ " up, down, left, right "
           "commands" + Fore.RESET + " to change the direction till home !\n F is your home destionation !\n Drive safe buddy !")
@@ -22,9 +22,6 @@ if __name__ == '__main__':
     if matrix_map == 666:  # when I generate a random map and get the code '666', the user get our 'Easter egg'
         print("It's your lucky day ! The mechanic it's your next-neighbour and you are already home !")
     else:  # else I got a correct map
-        print("Aici este mapa :")
-        for row in matrix_map:
-            print(row)
         for row in range(len(matrix_map)):  # search the starting and finish points
             for column in range(len(matrix_map)):
                 if matrix_map[row][column] == 'S':
@@ -48,24 +45,24 @@ if __name__ == '__main__':
                 neighbour = matrix_map[row][column]  # acel dictionar cu o singura keye din mapa
                 if row+1 == current_position[0] and column == current_position[1]:  # this means this is in nord
                     if type(neighbour) == dict:  # in our map it's possible to have or a dict or just the S and F points
-                        print(list(neighbour.keys())[0], " UP")
+                        print(list(neighbour.keys())[0], " --> UP")
                     else:
-                        print(neighbour, " UP")
+                        print(neighbour, "--> UP")
                 elif row-1 == current_position[0] and column == current_position[1]:  # this means this is in sud
                     if type(neighbour) == dict:
-                        print(list(neighbour.keys())[0], " DOWN")
+                        print(list(neighbour.keys())[0], "--> DOWN")
                     else:
-                        print(neighbour, " DOWN")
+                        print(neighbour, "--> DOWN")
                 elif row == current_position[0] and column-1 == current_position[1]:  # this means this is in east
                     if type(neighbour) == dict:
-                        print(list(neighbour.keys())[0], " RIGHT")
+                        print(list(neighbour.keys())[0], "--> RIGHT")
                     else:
-                        print(neighbour, " RIGHT")
+                        print(neighbour, "--> RIGHT")
                 elif row == current_position[0] and column+1 == current_position[1]:  # this means this is in west
                     if type(neighbour) == dict:
-                        print(list(neighbour.keys())[0], " LEFT")
+                        print(list(neighbour.keys())[0], "--> LEFT")
                     else:
-                        print(neighbour, " LEFT")
+                        print(neighbour, "--> LEFT")
 
             direction_input_from_user = input(f"\nType down the direction you wanna follow up :").lower()  # get the input
             # from user. Transform to lower because my colleague Marina chose to work with lower case letters
@@ -80,18 +77,23 @@ if __name__ == '__main__':
 
             if current_obstacle == 'F':
                 end_game = 1
+                path = add_step_to_queue('Home')
                 break
 
             car_life = update_car_health(car_life,matrix_map[coord_row][coord_column])  # update the car's health
             print(f"\nNow your current life is : {car_life}")  # show the car's health to the user
-            print(get_random_messages(list(current_obstacle.keys())[0]))  # print a message that have a bound to
+            if current_obstacle != 'S':
+                print(get_random_messages(list(current_obstacle.keys())[0]))  # print a message that have a bound to
             # the obstacle
-            path = add_step_to_queue(list(current_obstacle.keys())[0])  # add the position to the queue
+            if current_obstacle != 'S':
+                path = add_step_to_queue(list(current_obstacle.keys())[0])  # add the position to the queue
+            else:
+                path = add_step_to_queue('S')
             end_game = task6_end_game(current_position, car_life, finish_point)
 
         if end_game == -1:  # that means the user lost, the car's life is below 10%
-            print("Game over ! Your car is broken ! Your path was : ")  # show user's path
+            print("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGame over ! Your car is broken ! Your path was : \n")  # show user's path
             print(display_user_path_from_queue())
         elif end_game == 1:  # that means the user gets home
-            print("\n\nCongrats, you did it buddy ! Your path was : ")
+            print("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCongrats, you did it buddy ! Your path was : ")
             print(display_user_path_from_queue())
