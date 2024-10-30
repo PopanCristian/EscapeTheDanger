@@ -9,11 +9,11 @@ def get_random_messages(road_choice):
     :return: A random message associated with the obstacle or an error message
     """
     df = pd.read_csv("obstacles.csv") #Read the csv file
-    row = df[df['Nume posibilitate'] == road_choice] #Search for the row that corresponds to the user's choice
+    row = df[df['Obstacle Name'] == road_choice] #Search for the row that corresponds to the user's choice
 
     #Check if the row is not empty
     if not row.empty:
-        messages = eval(row['Mesaje'].values[0]) #Use eval to obtain the list of messages
+        messages = eval(row['Messages'].values[0]) #Use eval to obtain the list of messages
         return random.choice(messages) #Choose a random message from the list
     else:
         return "Unknown road, please try another option"

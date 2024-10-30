@@ -32,7 +32,7 @@ def depth_first_search(matrix_map, row_coord_x, column_coord_y, visited_set, pat
             path_list.append((row_coord_x,column_coord_y))  # add the new location to our "golden path " to finish point
 
             if matrix_map[row_coord_x][column_coord_y] != 'S' and matrix_map[row_coord_x][column_coord_y] != 'F':
-                matrix_map[row_coord_x][column_coord_y] = {"drum liber": 0}  # change the obstacle with free way
+                matrix_map[row_coord_x][column_coord_y] = {"free road": 0}  # change the obstacle with free way
 
             if depth_first_search(matrix_map, new_direction_row, new_direction_column, visited_set, path_list, finish):
                 return True
@@ -52,10 +52,6 @@ def find_path(matrix_map, start, finish):
     visited_set = set()
     path = []
     depth_first_search(matrix_map, start[0], start[1], visited_set, path, finish)
-    # if deepth_first_search(matrix_map,start[0],start[1],visited_set,path,finish):
-    #     print("Calea gasita:", path)
-    # else:
-    #     print("Nu exista un drum de la S la F.")
 
     return matrix_map
 

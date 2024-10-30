@@ -29,7 +29,7 @@ def get_obstacles_from_csv(file_path):
 
     return [
         {obstacle_name: dmg_obstacle}
-            for obstacle_name, dmg_obstacle in zip(df['Nume posibilitate'], df['Valoare posibilitate'])
+            for obstacle_name, dmg_obstacle in zip(df['Obstacle Name'], df['Obstacle Value'])
     ]
 
 def fill_map_function(size_map, matrix_map, start_point_tuple, finish_point_tuple, list_with_obstacles,difficulty):
@@ -63,7 +63,6 @@ def gen_random_map(size_map, difficulty):
     """
     matrix_map = [[{} for _ in range(size_map)] for _ in range(size_map)] # create an empty map
     # Each element represent a dictionary "key_name_obstacle" : value_obstacle
-    # print(matrix_map)
 
     start_point_tuple = generate_start_point(size_map)  # starting point
     finish_point_tuple = (random.randint(0, size_map-1), random.randint(0, size_map-1))  # The finish point(home) will
@@ -74,12 +73,10 @@ def gen_random_map(size_map, difficulty):
 
     obstacles = get_obstacles_from_csv("obstacles.csv")  # list with dictionaries
     # that contains names of obstacles with dmg
-    # print(obstacles)
 
     matrix_map = fill_map_function(size_map, matrix_map, start_point_tuple, finish_point_tuple, obstacles,difficulty)
 
     matrix_map = find_path(matrix_map,start_point_tuple,finish_point_tuple)
 
     return matrix_map
-    # print(get_diff_from_csv("obstacles.csv",difficulty))
 
